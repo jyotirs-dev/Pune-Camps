@@ -1,0 +1,27 @@
+<% include partials/header %>
+
+<div class="container">
+     
+          <div class="card">
+               <h2 class="text-center">Reset Paassword</h2>  
+           <div class="card-body" style="width:30%; margin:20px auto;">
+    <form action="/forgot" method="post">
+             
+        <div class="form-group">
+             <label for="email">Provide Registered Email for Password Reset</label>
+            <input type="email" class="form-control" placeholder="email" name= "email" required="required">
+        </div>
+       
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Send</button>
+        </div>
+              
+    </form>
+   
+    </div>
+    </div>
+</div
+
+
+
+<% include partials/footer %>

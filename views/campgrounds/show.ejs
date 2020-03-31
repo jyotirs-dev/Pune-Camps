@@ -1,0 +1,100 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <div class= "col-md-3">
+            <p class="lead"><a href="/campgrounds">Explore More Camps</a></p>
+            <div class=="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+
+                <img class="img-responsive" src= "<%= show_camp.img %>">
+                <div class="caption-full">
+                    <h4 class="pull-right">Rs <%=show_camp.price%>/Night</h4>
+                    <h4><a><%= show_camp.name %></a></h4>
+                    <p><%= show_camp.description %></p>
+                    <p>
+                        <em class="capitalize">Submitted By <%= show_camp.author.username %></em>
+                        </p>
+                        
+                        <% if(currentuser && show_camp.author.id.equals(currentuser._id)){ %>
+                        <a class="btn btn-default" href="/campgrounds/<%= show_camp._id%>/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <form id="delete-form" action="/campgrounds/<%= show_camp._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-default"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>
+                        </form>
+                        <% } %>
+                </div>
+                
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success pull-right" href = "/campgrounds/<%=show_camp._id %>/comments/new">Leave a review</a>
+                </div>
+                <div class="text-left">
+                    
+                <% var sum = 0; %>
+                <% var avgrating = 0;%>
+                <% for(i=0; i < show_camp.comments.length; i++) { %>
+                
+                <%    sum += Number(show_camp.comments[i].rating); %>
+               
+                <% } avgrating = (sum / show_camp.comments.length);%>
+                <% if(isNaN(avgrating) ){ %>
+                <% avgrating = 0; %>
+                <% } %>
+                <span><b>User Ratings :</b></span>
+                <% for(i=0; i< Math.round(avgrating); i++) { %>
+                 <span class="fa fa-star check"> </span> 
+                  <% } %>  
+                <% for(i=0; i<(5-Math.round(avgrating)); i++) { %>    
+                   <span class="fa fa-star checker"></span>
+                   <% } %>  
+                <br>
+                <em> <%= avgrating.toFixed(2) %> average based on <%= show_camp.comments.length %> reviews </em>
+                    
+                </div>
+                 
+               
+                 <hr>
+
+                <% show_camp.comments.forEach(function(comment){ %>
+                <div class="row">
+                    <div class="col-md-12">
+                         <strong class="capitalize"><%= comment.author.username %></strong>
+                         
+                         <% var totaldays = timeDifference((new Date()).getTime() ,comment.created.getTime()); %>
+                        
+                         <span class="pull-right">Posted <%= totaldays %></span>
+                         
+                         <br>
+                        <% for(i=0; i< Math.round(comment.rating); i++) { %>
+                            <span class="fa fa-star check"> </span> 
+                        <% } %>  
+                                    <% for(i=0; i<(5-Math.round(comment.rating)); i++) { %>    
+                            <span class="fa fa-star checker"></span>
+                        <% } %> 
+                        <% if(currentuser && comment.author.id.equals(currentuser._id)){ %>
+                            
+                            <span class="pull-right"><form id="delete-comment" action="/campgrounds/<%= show_camp._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-default btn-xs"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>
+                            </form></span>
+                            <span class="pull-right"><a class="btn btn-default btn-xs" href="/campgrounds/<%= show_camp._id %>/comments/<%= comment._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></span>
+                        <% } %>
+                        <p> <%= comment.text %> </p>
+                        
+                    </div>
+                </div>
+                    
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+                   
+<% include ../partials/footer %>

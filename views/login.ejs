@@ -1,0 +1,31 @@
+<% include partials/header %>
+
+<div class="container">
+     
+          <div class="card">
+               <h2 class="text-center">Log in to PuneCamp</h2>  
+           <div class="card-body" style="width:30%; margin:20px auto;">
+    <form action="/login" method="post">
+             
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" name= "username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name="password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+        <div class="clearfix">
+            <p class="pull-left"><a href="/register">Create an Account</a></p>
+            <a href="/forgot" class="pull-right">Forgot Password?</a>
+        </div>        
+    </form>
+   
+    </div>
+    </div>
+</div
+
+
+
+<% include partials/footer %>

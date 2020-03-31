@@ -1,0 +1,66 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        
+    
+        <h1 style="text-align:center;">Edit your review for <%= show_camp.name %></h1>
+<!--<form action="/campgrounds" method="POST">-->
+<!--    <input class="form-control" type="text" name="campname" placeholder="Enter camp name">-->
+<!--    <input class="form-control" type = "text" name="campimage" placeholder="image URL">-->
+<!--    <button class="btn btn-lg btn-default">Submit Details</button>-->
+<!--</form>-->
+
+        <div style="width:30%; margin:20px auto;">
+            <form action="/campgrounds/<%= show_camp.id %>/comments/<%= show_comment.id %>/edit?_method=PUT" method="POST">
+              <fieldset class="rating">
+                        <input type="radio" id="star5" name="editedcomment[rating]" value="5"  /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                        <!--<input type="radio" id="star4half" name="editedcomment[rating]" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>-->
+                        <input type="radio" id="star4" name="editedcomment[rating]" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                        <!--<input type="radio" id="star3half" name="editedcomment[rating]" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>-->
+                        <input type="radio" id="star3" name="editedcomment[rating]" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                        <!--<input type="radio" id="star2half" name="editedcomment[rating]" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>-->
+                        <input type="radio" id="star2" name="editedcomment[rating]" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                        <!--<input type="radio" id="star1half" name="editedcomment[rating]" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>-->
+                        <input type="radio" id="star1" name="editedcomment[rating]" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                        <!--<input type="radio" id="starhalf" name="editedcomment[rating]" value=".5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>-->
+              </fieldset>
+              
+             
+          
+              
+              <div class="form-group" id="marginchange">
+             
+                <input class="form-control"  type="text" name="editedcomment[text]" value="<%= show_comment.text %>">   <label for="commentname"></label>
+              </div>
+              <!--<div class="form-group">-->
+              <!--  <label for="rating">Give Rating</label>-->
+              <!--  <input class="form-control"  type="number" name="editedcomment[rating]" min="0" max="5" placeholder="Enter rating here">-->
+              <!--</div>-->
+              
+              <div class="form-group">
+              <button type="submit" class="btn btn-default btn-block btn-primary">Submit</button>
+              </div>
+            </form> 
+            <a href="/campgrounds/<%=show_camp.id%>">Go back</a>
+        </div>
+        
+        
+    </div>
+</div>
+
+ <script>
+         
+              var star = document.querySelectorAll("input"); 
+                for(i=0; i < star.length; i++) { 
+                console.log(star[i].value);
+                    if(Number(star[i].value)== <%=show_comment.rating%>) 
+                        {
+                            star[i].checked = true;
+                            
+                        } 
+                } 
+</script>
+              
+<% include ../partials/footer %>
+    
+

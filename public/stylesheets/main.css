@@ -1,0 +1,38 @@
+
+.thumbnail img{
+     width:100%;
+     }
+#high{
+     height: 173.83px;
+}
+/*.thumbnail{*/
+/*     padding:0;*/
+/*}*/
+
+.thumbnail .caption-full{
+     padding:9px;
+}
+
+#delete-form{
+     display:inline;
+}
+#delete-comment{
+     display:inline;
+}
+.check {
+  color: orange;
+}
+
+.checker{
+     color: #ddd;
+}
+
+
+#marginchange{
+     margin-bottom: 0px;
+}
+.capitalize {
+    text-transform: capitalize;   
+  }
+  
+  
