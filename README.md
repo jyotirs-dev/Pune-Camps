@@ -4,7 +4,7 @@ A Node.js web application project from the Udemy course - The Web Developer Boot
 
 #Live Demo:
 
-To see the app in action, go to https://vast-beyond-91807.herokuapp.com/campgrounds
+To see the app in action, go to https://vast-beyond-91807.herokuapp.com/
 
 #Features:
 
